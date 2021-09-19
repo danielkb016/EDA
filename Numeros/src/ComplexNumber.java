@@ -17,6 +17,7 @@ public class ComplexNumber {
      * @param a real part
      * @param b imaginary part
      */
+    private double realpart, imagpart;
     ComplexNumber(double a, double b){
         
     }
