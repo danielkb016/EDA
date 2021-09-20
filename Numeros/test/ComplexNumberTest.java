@@ -32,12 +32,11 @@ public class ComplexNumberTest {
     @Test
     public void testRealPart() {
         System.out.println("realPart");
-        ComplexNumber instance = null;
-        double expResult = 0.0;
+        ComplexNumber instance = new ComplexNumber(2.2, 2.0);
+        double expResult = 2.2;
         double result = instance.realPart();
         assertEquals(expResult, result, 0.0);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -46,12 +45,11 @@ public class ComplexNumberTest {
     @Test
     public void testImaginaryPart() {
         System.out.println("imaginaryPart");
-        ComplexNumber instance = null;
-        double expResult = 0.0;
+        ComplexNumber instance = new ComplexNumber(7.0, 2.0);
+        double expResult = 2.0;
         double result = instance.imaginaryPart();
         assertEquals(expResult, result, 0.0);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -60,13 +58,12 @@ public class ComplexNumberTest {
     @Test
     public void testAdd() {
         System.out.println("add");
-        ComplexNumber c = null;
-        ComplexNumber instance = null;
-        ComplexNumber expResult = null;
+        ComplexNumber c = new ComplexNumber(7.0, 2.0);
+        ComplexNumber instance = new ComplexNumber(7.0, 2.0);
+        ComplexNumber expResult = new ComplexNumber(14.0, 4.0);
         ComplexNumber result = instance.add(c);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -75,13 +72,13 @@ public class ComplexNumberTest {
     @Test
     public void testSubtract() {
         System.out.println("subtract");
-        ComplexNumber c = null;
-        ComplexNumber instance = null;
-        ComplexNumber expResult = null;
+         ComplexNumber c = new ComplexNumber(7.0, 2.0);
+        ComplexNumber instance = new ComplexNumber(7.0, 2.0);
+        ComplexNumber expResult = new ComplexNumber(0.0, 0.0);
         ComplexNumber result = instance.subtract(c);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
     /**
@@ -90,13 +87,13 @@ public class ComplexNumberTest {
     @Test
     public void testMultiply() {
         System.out.println("multiply");
-        ComplexNumber c = null;
-        ComplexNumber instance = null;
-        ComplexNumber expResult = null;
+        ComplexNumber c = new ComplexNumber(0.0, 0.0);
+        ComplexNumber instance = new ComplexNumber(0.0, 0.0);
+        ComplexNumber expResult = new ComplexNumber(0.0, 0.0);
         ComplexNumber result = instance.multiply(c);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
     }
 
     /**
@@ -105,13 +102,12 @@ public class ComplexNumberTest {
     @Test
     public void testDivision() {
         System.out.println("division");
-        ComplexNumber c = null;
-        ComplexNumber instance = null;
-        ComplexNumber expResult = null;
+        ComplexNumber c = new ComplexNumber(0.0, 0.0);
+        ComplexNumber instance = new ComplexNumber(0.0, 0.0);
+        ComplexNumber expResult = new ComplexNumber(0.0, 0.0);
         ComplexNumber result = instance.division(c);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -120,12 +116,11 @@ public class ComplexNumberTest {
     @Test
     public void testConjugate() {
         System.out.println("conjugate");
-        ComplexNumber instance = null;
-        ComplexNumber expResult = null;
+        ComplexNumber instance = new ComplexNumber(1.0, 2.0);
+        ComplexNumber expResult = new ComplexNumber(1.0, -2.0);
         ComplexNumber result = instance.conjugate();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -134,12 +129,11 @@ public class ComplexNumberTest {
     @Test
     public void testModule() {
         System.out.println("module");
-        ComplexNumber instance = null;
+        ComplexNumber instance = new ComplexNumber(0.0, 0.0);
         double expResult = 0.0;
         double result = instance.module();
         assertEquals(expResult, result, 0.0);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
     
 }
