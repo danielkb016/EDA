@@ -72,6 +72,7 @@ public class ComplexNumber {
      *          this * c2
      */
     public ComplexNumber multiply (ComplexNumber c){
+        return null;
     }
     
    /**
