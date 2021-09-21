@@ -36,17 +36,42 @@ public class FloatLinkedList implements FloatList{
 
     @Override
     public void add(Float value) {
-        
+        FloatNode node = new FloatNode (value, this.head);
+        this.head = node;
+        size++;
     }
 
     @Override
     public void add(int index, Float value) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       if ((index <= this.size()) &&( index > 0))
+            throw new RuntimeException("Lista vacia");
+       FloatNode node = new FloatNode (value, null);
+       
+       if( index == 1)
+            add(value);
+       else{
+       
+       FloatNode aux = this.head;
+       for (int i := 1; i<= index-1; i++){
+            aux = aux.head.next;
+    
+       }
+       FloatNode node = new FloatNode (value, aux.next);
+       aux.next = node;
+      }
+       size++;
     }
 
     @Override
     public Float remove() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (this.isempty()) 
+            throw new RuntimeException("Lista vacia");
+       
+        FloatNode node = this.head;
+        size--;
+        this.head = node.next;
+        return node.element;
+        
     }
 
     @Override
@@ -56,7 +81,10 @@ public class FloatLinkedList implements FloatList{
 
     @Override
     public Float get() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (this.isempty()) 
+            throw new RuntimeException("Lista vacia");
+       
+        return head.element;
     }
 
     @Override
@@ -71,7 +99,7 @@ public class FloatLinkedList implements FloatList{
 
     @Override
     public boolean contains(Float value) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return search(value) != 0;
     }
     
 }
