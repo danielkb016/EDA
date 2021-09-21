@@ -10,11 +10,32 @@
  */
 public class FloatLinkedList implements FloatList{
 
-    private class FloatNode{
-        private class FloatNode{
-            private float element;
-        }         
+    private class FloatNode{ //Creación de clase interna privada (solo visible dentro de la clase) para el nodo
+        private float element;
+        private FloatNode next;
+        public FloatNode(float e, FloatNode n){
+            this.element = e;
+            this.next = n;
+        }
+
+        public float getElement() {
+            return element;
+        }
+
+        public void setElement(float element) {
+            this.element = element;
+        }
+
+        public FloatNode getNext() {
+            return next;
+        }
+
+        public void setNext(FloatNode next) {
+            this.next = next;
+        }
         
+    }         
+      
     private FloatNode head;
     private int size;
     
@@ -23,7 +44,7 @@ public class FloatLinkedList implements FloatList{
         this.size = 0;
     }
     
-    }
+    
     @Override
     public int size() {
         return this.size();
@@ -36,30 +57,32 @@ public class FloatLinkedList implements FloatList{
 
     @Override
     public void add(Float value) {
-        FloatNode node = new FloatNode (value, this.head);
+        FloatNode node = new FloatNode(value,this.head);
         this.head = node;
         size++;
     }
 
     @Override
     public void add(int index, Float value) {
-       if ((index <= this.size()) &&( index > 0))
-            throw new RuntimeException("Lista vacia");
-       FloatNode node = new FloatNode (value, null);
-       
-       if( index == 1)
+        if (index <= 0 || index > this.size + 1 )
+            throw new RuntimeException("posicion no valida");
+        
+        if (index == 1){
             add(value);
-       else{
-       
-       FloatNode aux = this.head;
-       for (int i := 1; i<= index-1; i++){
-            aux = aux.head.next;
+        }
+            
+        else{
+               FloatNode aux = this.head;
+               for (int i=1;i<=index-1;i++){
+                   aux = aux.next;
+                
+               }
+                
+        }
+                
+        
+        
     
-       }
-       FloatNode node = new FloatNode (value, aux.next);
-       aux.next = node;
-      }
-       size++;
     }
 
     @Override
