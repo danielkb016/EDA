@@ -10,19 +10,33 @@
  */
 public class FloatLinkedList implements FloatList{
 
+    private class FloatNode{
+        private class FloatNode{
+            private float element;
+        }         
+        
+    private FloatNode head;
+    private int size;
+    
+    public FloatLinkedList(){
+        this.head = null;
+        this.size = 0;
+    }
+    
+    }
     @Override
     public int size() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.size();
     }
 
     @Override
     public boolean isempty() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.size() == 0;
     }
 
     @Override
     public void add(Float value) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
     @Override
