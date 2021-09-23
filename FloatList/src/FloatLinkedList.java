@@ -47,12 +47,12 @@ public class FloatLinkedList implements FloatList{
     
     @Override
     public int size() {
-        return this.size();
+        return this.size;
     }
 
     @Override
     public boolean isempty() {
-        return this.size() == 0;
+        return this.size == 0;
     }
 
     @Override
@@ -77,6 +77,9 @@ public class FloatLinkedList implements FloatList{
                    aux = aux.next;
                 
                }
+               FloatNode node = new FloatNode(value,aux.next);
+            aux.next=node;
+            size++;
                 
         }
                 
