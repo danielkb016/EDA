@@ -1,38 +1,59 @@
 /**
  *
  * @author mayte
+ * @param <F>
  */
-public class FloatLinkedList implements FloatList{
+public class LinkedList<F> implements List<F>{
 
-    private class FloatNode{
+    @Override
+    public void add(F value) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void add(int index, F value) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public int search(F value) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean contains(F value) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private class Node<G>{
        
-        private Float elem;
-        private FloatNode next;
+        private G elem;
+        private Node next;
 
-        public Float getElem() {
+        public G getElem() {
             return elem;
         }
 
-        public void setElem(Float elem) {
+        public void setElem(G elem) {
             this.elem = elem;
         }
 
-        public FloatNode getNext() {
+        public Node getNext() {
             return next;
         }
 
-        public void setNext(FloatNode next) {
+        public void setNext(Node next) {
             this.next = next;
         }
         
-        public FloatNode(Float e, FloatNode sig){
+        public Node(G e, Node sig){
             this.elem = e;
             this.next = sig;
         }        
              
     }
     
-    private FloatNode forward(int index){
+    private Node<F> forward(int index){
         if ((index < 1) || (index > (size + 1)))
             throw new RuntimeException("The index is out of limits.");
         FloatNode ant = null;

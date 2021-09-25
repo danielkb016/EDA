@@ -2,7 +2,7 @@
  *
  * @author mayte
  */
-public interface FloatList {
+public interface List<F> {
     
     /**
      * Returns the number of elements in this list
@@ -23,7 +23,7 @@ public interface FloatList {
      * 
      * @param value 
      */
-    public void add(Float value);
+    public void add(F value);
     
     /**
      * Inserts the specified element at the specified position in this list (optional operation)
@@ -31,14 +31,14 @@ public interface FloatList {
      * @param index
      * @param value 
      */
-    public void add(int index, Float value);
+    public void add(int index, F value);
     
     /**
      * Returns and returns the element at the beginning of this list
      * 
      * @return 
      */
-    public Float remove();
+    public F remove();
     
     /**
      * Removes and returns the element at the specified position in this list 
@@ -46,14 +46,14 @@ public interface FloatList {
      * @param index
      * @return 
      */
-    public Float remove(int index);
+    public F remove(int index);
     
     /**
      * Returns the element at the beginning of this list
      * 
      * @return 
      */
-    public Float get();
+    public F get();
     
     /**
      * Returns the element at the specified position in this list
@@ -61,7 +61,7 @@ public interface FloatList {
      * @param index
      * @return 
      */
-    public Float get(int index);
+    public F get(int index);
     
     /**
      * Returns the element's position if this list contains the specified element
@@ -70,7 +70,7 @@ public interface FloatList {
      * @param value
      * @return 
      */
-    public int search(Float value);
+    public int search(F value);
     
     /**
      * Returns true if this list contains the specified element.
@@ -78,5 +78,5 @@ public interface FloatList {
      * @param value
      * @return 
      */
-    public boolean contains (Float value);
+    public boolean contains (F value);
 }
