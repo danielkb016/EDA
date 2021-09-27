@@ -1,7 +1,9 @@
 
 
+import org.junit.AfterClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.BeforeClass;
 
 /**
  *
@@ -13,13 +15,21 @@ public class ArrayListTest<F> {
     public ArrayListTest() {
     }
 
+    @BeforeClass
+    public static void setUpClass() throws Exception {
+    }
+
+    @AfterClass
+    public static void tearDownClass() throws Exception {
+    }
+
     public ArrayList inicializa(){
        
         ArrayList instance = new ArrayList<F>(6);
         
-        instance.add(new F(3));
-        instance.add(new F(8));
-        instance.add(new F(12));
+        instance.add(new Float(3));
+        instance.add(new Float(8));
+        instance.add(new Float(12));
         
         return instance; //[12, 8, 3]
     }
@@ -71,7 +81,7 @@ public class ArrayListTest<F> {
         F value = null;
         ArrayList instance = new ArrayList<F>(3);
         assertTrue(instance.isempty());
-        instance.add(new F(2));
+        instance.add(new Float(2));
         assertFalse(instance.isempty());
         assertEquals(instance.size(),1);
     }
@@ -83,7 +93,7 @@ public class ArrayListTest<F> {
     public void testAdd_int_Remove() {
         System.out.println("add");
         int index = 3;
-        F value = new F(5);
+        Float value = new Float(5);
         ArrayList instance = inicializa(); // [12, 8, 3]
         instance.add(index, value); // [12, 8, 5, 3]
         assertEquals(instance.size(),4);
@@ -105,7 +115,7 @@ public class ArrayListTest<F> {
     public void testRemove_int() {
         System.out.println("remove");
         int index = 2;
-        FArrayList instance = inicializa(); // [12, 8, 3]
+        ArrayList instance = inicializa(); // [12, 8, 3]
         F result = instance.remove(index);// 8
         assertEquals(8.0, result,0.01);
        
@@ -166,6 +176,61 @@ public class ArrayListTest<F> {
         value = new F(12);
         result = instance.contains(value);
         assertTrue(result);
+    }
+
+    /**
+     * Test of isempty method, of class ArrayList.
+     */
+    @Test
+    public void testIsempty() {
+        System.out.println("isempty");
+        ArrayList instance = null;
+        boolean expResult = false;
+        boolean result = instance.isempty();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of add method, of class ArrayList.
+     */
+    @Test
+    public void testAdd_GenericType() {
+        System.out.println("add");
+        Object value = null;
+        ArrayList instance = null;
+        instance.add(value);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of add method, of class ArrayList.
+     */
+    @Test
+    public void testAdd_int_GenericType() {
+        System.out.println("add");
+        int index = 0;
+        Object value = null;
+        ArrayList instance = null;
+        instance.add(index, value);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of remove method, of class ArrayList.
+     */
+    @Test
+    public void testRemove_0args() {
+        System.out.println("remove");
+        ArrayList instance = null;
+        Object expResult = null;
+        Object result = instance.remove();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
     }
     
 }
