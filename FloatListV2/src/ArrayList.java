@@ -6,16 +6,17 @@ import java.util.Objects;
 /**
  *
  * @author mayte
+ * @param <F>
  */
-public class FloatArrayList implements FloatList{
+public class ArrayList<F> implements List<F>{
     
-    private final Float[] vector;
+    private final F[] vector;
     private int pos;
     private final int MAX;
     
-    public FloatArrayList(int tam){
+    public ArrayList(int tam){
         MAX = tam;
-        vector = new Float[MAX];
+        vector = (F[]) new Object[MAX];
         pos = 0;
     }
     
@@ -30,7 +31,7 @@ public class FloatArrayList implements FloatList{
     }
 
     @Override
-    public void add(Float value) {
+    public void add(F value) {
         vector[pos] = value;
         pos++;
     }
@@ -41,7 +42,7 @@ public class FloatArrayList implements FloatList{
     }
     
     @Override
-    public void add(int index, Float value) {
+    public void add(int index, F value) {
         limits(index);
         int mov = pos;
         for(int i = 1; i < index; i++){
@@ -53,19 +54,19 @@ public class FloatArrayList implements FloatList{
     }
 
     @Override
-    public Float remove() {
+    public F remove() {
         if (isempty())
             throw new RuntimeException("It is not allowed remove elements froma empty list.");
         pos--;
-        Float value = vector[pos];        
+        F value = vector[pos];        
         return value;
     }
 
     @Override
-    public Float remove(int index) {
+    public F remove(int index) {
         if ((isempty())||(index > pos))
             throw new RuntimeException("This operation can not do it.");
-        Float value = vector[pos-index];
+        F value = vector[pos-index];
         for (int i = pos-index; i < (pos-1); i++){
             vector[i] = vector[i+1];
         }
@@ -74,21 +75,21 @@ public class FloatArrayList implements FloatList{
     }
 
     @Override
-    public Float get() {
+    public F get() {
         if (isempty())
             throw new RuntimeException("There is not element in the list.");
         return vector[pos-1];
     }
 
     @Override
-    public Float get(int index) {
+    public F get(int index) {
         if ((isempty())||(index > pos))
             throw new RuntimeException("There is not element in the list.");
         return vector[pos-index];
     }
 
     @Override
-    public int search(Float value) {
+    public int search(F value) {
         if (isempty())
             return 0;
         int cont = 1;
@@ -104,8 +105,10 @@ public class FloatArrayList implements FloatList{
     }
 
     @Override
-    public boolean contains(Float value) {
+    public boolean contains(F value) {
         return (search(value) != 0);
     }
+
+    
     
 }

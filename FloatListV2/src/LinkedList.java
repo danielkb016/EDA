@@ -5,36 +5,18 @@
  */
 public class LinkedList<F> implements List<F>{
 
-    @Override
-    public void add(F value) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
-    @Override
-    public void add(int index, F value) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
-    @Override
-    public int search(F value) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean contains(F value) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    private class Node<G>{
+    private class Node<T>{
        
-        private G elem;
+        private T elem;
         private Node next;
 
-        public G getElem() {
+        public T getElem() {
             return elem;
         }
 
-        public void setElem(G elem) {
+        public void setElem(T elem) {
             this.elem = elem;
         }
 
@@ -46,7 +28,7 @@ public class LinkedList<F> implements List<F>{
             this.next = next;
         }
         
-        public Node(G e, Node sig){
+        public Node(T e, Node sig){
             this.elem = e;
             this.next = sig;
         }        
@@ -56,8 +38,8 @@ public class LinkedList<F> implements List<F>{
     private Node<F> forward(int index){
         if ((index < 1) || (index > (size + 1)))
             throw new RuntimeException("The index is out of limits.");
-        FloatNode ant = null;
-        FloatNode act = head;
+        Node ant = null;
+        Node act = head;
         for (int i = 1; i < index; i++){
             ant = act;
             act = act.getNext();
@@ -66,9 +48,9 @@ public class LinkedList<F> implements List<F>{
     }
     
     private int size;
-    private FloatNode head;
+    private Node<F> head;
     
-    public FloatLinkedList(){
+    public LinkedList(){
         this.size = 0;
         this.head = null;
     }
@@ -84,67 +66,67 @@ public class LinkedList<F> implements List<F>{
     }
 
     @Override
-    public void add(Float value) {
-        FloatNode aux = new FloatNode(value, head);
+    public void add(F value) {
+        Node aux = new Node(value, head);
         this.head = aux;
         this.size++;
     }
 
      
     @Override
-    public void add(int index, Float value) {
-        FloatNode ant = forward(index);
+    public void add(int index, F value) {
+        Node ant = forward(index);
         if (ant == null)
             add(value);
         else{
-            FloatNode aux = new FloatNode(value, ant.getNext());
+            Node aux = new Node(value, ant.getNext());
             this.size++;
             ant.setNext(aux);
         }          
     }
 
     @Override
-    public Float remove() {
+    public F remove() {
         if (this.isempty())
             throw new RuntimeException("It is not allowed remove elements from a empty list.");
-        FloatNode aux = head;
+        Node aux = head;
         size--;
         head = head.getNext();
-        return aux.getElem();
+        return (F) aux.getElem();
     }
 
     
     @Override
-    public Float remove(int index) {
-        FloatNode ant = forward(index);
+    public F remove(int index) {
+        Node ant = forward(index);
         if (ant == null)
             return remove();
         else{
             this.size--;
-            FloatNode aux = ant.getNext();
+            Node aux = ant.getNext();
             ant.setNext(aux.getNext()); 
-            return aux.getElem();
+            return (F) aux.getElem();
         }
     }
 
     @Override
-    public Float get() {
+    public F get() {
         if (this.isempty())
              throw new RuntimeException("The index is out of limits.");
         return head.getElem();
     }
 
     @Override
-    public Float get(int index) {
-        FloatNode ant = forward(index+1);
-        return ant.getElem();        
+    public F get(int index) {
+        Node ant = forward(index+1);
+        return (F) ant.getElem();        
     }
 
     @Override
-    public int search(Float value) {
+    public int search(F value) {
         if (isempty())
             return 0;
-        FloatNode aux = head;
+        Node aux = head;
         int i = 1;
         while ((i < size) && (!aux.getElem().equals(value))){
             aux = aux.getNext();
@@ -156,7 +138,7 @@ public class LinkedList<F> implements List<F>{
     }
 
     @Override
-    public boolean contains(Float value) {
+    public boolean contains(F value) {
        return (search(value) != 0);
     }
     
