@@ -5,21 +5,30 @@
  */
 package bingo;
 
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
+
 /**
  *
  * @author jose.velez
  */
 class Hype {
-
+    private List<Integer> bombo = new LinkedList();
+    private final static int NUMBERS = 90;
+    
     public Hype() {
+        for (int i = 1; i <=NUMBERS;i++)
+            bombo.add(i);
+        Collections.shuffle(bombo); //Para "barajar o mezclar" la lista
     }
 
     boolean hasNumbers() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return bombo.isEmpty();
     }
 
     int getNumber() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return bombo.remove(0);
     }
     
 }
