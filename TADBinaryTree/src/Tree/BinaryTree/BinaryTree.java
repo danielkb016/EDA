@@ -1,7 +1,6 @@
 
 package Tree.BinaryTree;
 
-import Tree.Tree;
 import material.Position;
 
 /**
