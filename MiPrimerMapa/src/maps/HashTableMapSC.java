@@ -175,6 +175,7 @@ public class HashTableMapSC<K, V> implements Map<K, V> {
        Random ran = new Random();
        shift = ran.nextInt(prime-1)+1;
        scale = ran.nextInt(prime);
+       size = 0;
     }
 
     /**
@@ -184,7 +185,7 @@ public class HashTableMapSC<K, V> implements Map<K, V> {
      * @return
      */
     protected int hashValue(K key) {
-        
+        return ((key.hashCode()*shift+scale) % prime) % capacity;
     }
 
     /**
@@ -194,7 +195,7 @@ public class HashTableMapSC<K, V> implements Map<K, V> {
      */
     @Override
     public int size() {
-        throw new UnsupportedOperationException("Not yet implemented");
+        return size;
     }
 
     /**
@@ -204,7 +205,7 @@ public class HashTableMapSC<K, V> implements Map<K, V> {
      */
     @Override
     public boolean isEmpty() {
-        throw new UnsupportedOperationException("Not yet implemented");
+       return size == 0;
     }
 
     /**
@@ -215,7 +216,16 @@ public class HashTableMapSC<K, V> implements Map<K, V> {
      */
     @Override
     public V get(K key) throws IllegalStateException {
-        throw new UnsupportedOperationException("Not yet implemented");
+        int pos = this.hashValue(key);
+        if (bucket[pos] != null){
+            
+            for (HashEntry<K,V> entradaE: bucket[pos]) {
+                if( entradaE.getKey().equals(key))
+                    return entradaE.getValue();
+            }
+        }
+            
+        return null;
     }
 
     /**
@@ -227,7 +237,22 @@ public class HashTableMapSC<K, V> implements Map<K, V> {
      */
     @Override
     public V put(K key, V value) throws IllegalStateException {
-        throw new UnsupportedOperationException("Not yet implemented");
+       V val = get(key);
+       int pos = hashValue(key);
+       
+       if (val == null){
+           if(bucket[pos] == null)
+               bucket[pos] = new ArrayList();
+           bucket[pos].add(new HashEntry(key,value));
+           size++;
+       }else{
+           for (HashEntry<K,V> e: bucket[pos]){
+               if(e.getKey().equals(key))
+                   e.setValue(value);
+           }
+       }
+       
+       return val;
     }
 
     /**
