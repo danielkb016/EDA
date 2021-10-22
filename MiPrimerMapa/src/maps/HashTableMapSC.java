@@ -3,6 +3,7 @@ package maps;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Objects;
+import java.util.Random;
 
 /**
  * Separate chaining table implementation of hash tables. Note that all
@@ -149,7 +150,7 @@ public class HashTableMapSC<K, V> implements Map<K, V> {
     private int shift,scale;
     
     public HashTableMapSC() {
-        throw new UnsupportedOperationException("Not yet implemented");
+        this(109345121,100);
     }
 
     /**
@@ -158,7 +159,7 @@ public class HashTableMapSC<K, V> implements Map<K, V> {
      * @param cap initial capacity
      */
     public HashTableMapSC(int cap) {
-        throw new UnsupportedOperationException("Not yet implemented");
+        
     }
 
     /**
@@ -171,6 +172,9 @@ public class HashTableMapSC<K, V> implements Map<K, V> {
        prime = p;
        capacity = cap;
        bucket = new ArrayList[capacity];
+       Random ran = new Random();
+       shift = ran.nextInt(prime-1)+1;
+       scale = ran.nextInt(prime);
     }
 
     /**
@@ -180,7 +184,7 @@ public class HashTableMapSC<K, V> implements Map<K, V> {
      * @return
      */
     protected int hashValue(K key) {
-        throw new UnsupportedOperationException("Not yet implemented");
+        
     }
 
     /**
