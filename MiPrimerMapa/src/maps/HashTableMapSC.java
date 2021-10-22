@@ -2,6 +2,7 @@ package maps;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Objects;
 
 /**
  * Separate chaining table implementation of hash tables. Note that all
@@ -12,38 +13,57 @@ import java.util.Iterator;
  * @param <V> The stored value
  */
 public class HashTableMapSC<K, V> implements Map<K, V> {
-
+    
     private class HashEntry<T, U> implements Entry<T, U> {
 
+        private final T key;
+        private U value;
+        
+        
         public HashEntry(T k, U v) {
-            throw new UnsupportedOperationException("Not yet implemented");
+           key = k;
+           value = v;
         }
 
         @Override
         public U getValue() {
-            throw new UnsupportedOperationException("Not yet implemented");
+            return value;
         }
 
         @Override
         public T getKey() {
-            throw new UnsupportedOperationException("Not yet implemented");
+           return key;
         }
 
         public U setValue(U val) {
-            throw new UnsupportedOperationException("Not yet implemented");
+            U aux = value;
+            value = val;
+            return aux;
         }
+
 
         @Override
         public boolean equals(Object o) {
-            throw new UnsupportedOperationException("Not yet implemented");
+            if (!(o instanceof HashEntry))
+                return false;
+            HashEntry aux = (HashEntry) o;
+            if(!(aux.getKey().getClass() == this.key.getClass()) || !(aux.getValue().getClass() == this.value.getClass()))
+            if(aux.getKey().equals(this.key) && ( aux.getValue().equals(this.value)))
+                    return true;
+           
+            return false;
+            
+            
         }
+
+        
 
         /**
          * Entry visualization.
          */
         @Override
         public String toString() {
-            throw new UnsupportedOperationException("Not yet implemented");
+           return key.toString() + " " + value.toString();
         }
     }
 
@@ -123,6 +143,11 @@ public class HashTableMapSC<K, V> implements Map<K, V> {
     /**
      * Creates a hash table
      */
+    private  int prime = 109345121;
+    private int capacity,size;
+    private ArrayList<HashEntry<K,V>> bucket[];
+    private int shift,scale;
+    
     public HashTableMapSC() {
         throw new UnsupportedOperationException("Not yet implemented");
     }
@@ -143,7 +168,9 @@ public class HashTableMapSC<K, V> implements Map<K, V> {
      * @param cap initial capacity
      */
     public HashTableMapSC(int p, int cap) {
-        throw new UnsupportedOperationException("Not yet implemented");
+       prime = p;
+       capacity = cap;
+       bucket = new ArrayList[capacity];
     }
 
     /**
