@@ -5,7 +5,7 @@ package maps;
  * @param <V> The stored value
  */
 public class HashTableMapDH<K, V> extends AbstractHashTableMap<K, V> {
-
+//
     private int capacidad;
 
     public HashTableMapDH(int size) {
