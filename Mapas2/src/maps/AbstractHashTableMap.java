@@ -257,7 +257,18 @@ abstract public class AbstractHashTableMap<K, V> implements Map<K, V> {
      */
     @Override
     public V get(K key) throws IllegalStateException {
-       throw new UnsupportedOperationException("Not yet implemented");
+        int i = 0;
+       int pos = hashValue(key) + offset(hashValue(key),i) % capacity;
+        HashEntry<K, V> entrada = bucket[pos];
+        if(entrada == null)
+            return null;
+        if ((entrada == AVAILABLE) || !(entrada.getKey().equals(key)))
+            //seguir mirando
+        if(entrada.getKey().equals(key))
+            return entrada.getValue();
+        else
+           return entrada.getValue();
+        return null;
     }
 
     /**
