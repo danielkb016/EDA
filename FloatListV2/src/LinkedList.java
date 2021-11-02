@@ -123,9 +123,9 @@ public class LinkedList<F> implements List<F>{
     }
 
     @Override
-    public int search(F value) {
+    public boolean search(F value) {
         if (isempty())
-            return 0;
+            return false;
         Node aux = head;
         int i = 1;
         while ((i < size) && (!aux.getElem().equals(value))){
@@ -133,13 +133,13 @@ public class LinkedList<F> implements List<F>{
             i++;
         }
         if ((i < size)||(aux.getElem().equals(value)))
-            return i;
-        return 0;
+            return true;
+        return false;
     }
 
     @Override
     public boolean contains(F value) {
-       return (search(value) != 0);
+       return (search(value));
     }
     
 }

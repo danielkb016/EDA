@@ -70,7 +70,7 @@ public interface FloatList {
      * @param value
      * @return 
      */
-    public int search(Float value);
+    public boolean search(Float value);
     
     /**
      * Returns true if this list contains the specified element.

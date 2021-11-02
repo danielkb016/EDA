@@ -89,9 +89,9 @@ public class ArrayList<F> implements List<F>{
     }
 
     @Override
-    public int search(F value) {
+    public boolean search(F value) {
         if (isempty())
-            return 0;
+            return false;
         int cont = 1;
         int i = pos-1;
         while ((i > 0) && (!value.equals(vector[i]))){
@@ -99,14 +99,14 @@ public class ArrayList<F> implements List<F>{
             cont++;
         }
         if (!value.equals(vector[i]))
-            return 0;
+            return false;
         else
-            return cont;
+            return true;
     }
 
     @Override
     public boolean contains(F value) {
-        return (search(value) != 0);
+        return (search(value) );
     }
 
     

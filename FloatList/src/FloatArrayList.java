@@ -51,7 +51,7 @@ public class FloatArrayList implements FloatList{
     }
 
     @Override
-    public int search(Float value) {
+    public boolean search(Float value) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

@@ -70,7 +70,7 @@ public interface List<F> {
      * @param value
      * @return 
      */
-    public int search(F value);
+    public boolean search(F value);
     
     /**
      * Returns true if this list contains the specified element.
