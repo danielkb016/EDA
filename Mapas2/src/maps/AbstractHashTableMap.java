@@ -174,7 +174,7 @@ abstract public class AbstractHashTableMap<K, V> implements Map<K, V> {
         }
     }
 
-    protected class HashEntryIndex {
+    private class HashEntryIndex {
 
         int index;
         boolean found;
@@ -255,9 +255,59 @@ abstract public class AbstractHashTableMap<K, V> implements Map<K, V> {
      * @param key
      * @return value
      */
+    private HashEntryIndex damePosicion(K key){
+        checkKey(key);
+        int j = 0;
+        int i = 0;
+        int pos = hashValue(key) % capacity;
+        boolean actualizado = false;
+       
+        HashEntryIndex indice = new HashEntryIndex(pos,false); 
+        do{
+            HashEntry<K, V> entrada = bucket[pos];
+            if(entrada == null)
+                break;
+             if ((entrada == AVAILABLE) || !(entrada.getKey().equals(key))){
+                if(entrada == AVAILABLE && !actualizado){
+                    indice.index = pos;
+                    actualizado = !actualizado;
+                    
+                }
+                j++;
+                pos = (hashValue(key) + offset(hashValue(key),j)) % capacity;
+             }else {
+                 indice.index = pos;
+                 indice.found = true;
+                 break;
+             }
+                return indice;
+        }while(j < capacity);
+        
+        
+        return indice;
+    }
     @Override
     public V get(K key) throws IllegalStateException {
-       throw new UnsupportedOperationException("Not yet implemented");
+        checkKey(key);
+        int j = 0;
+        int i = 0;
+        int pos = hashValue(key) % capacity;
+        do{
+            HashEntry<K, V> entrada = bucket[pos];
+            if(entrada == null)
+            return null;
+             if ((entrada == AVAILABLE) || !(entrada.getKey().equals(key))){
+                j++;
+                pos = (hashValue(key) + offset(hashValue(key),j)) % capacity;
+             }
+            if(entrada.getKey().equals(key))
+                return entrada.getValue();
+            else
+                return entrada.getValue();
+        }while(j < capacity);
+        
+        
+        return null;
     }
 
     /**
