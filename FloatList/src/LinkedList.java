@@ -125,7 +125,7 @@ public class LinkedList implements FloatList{
         FloatNode prev = null;
         for(int i = 0; i < index ; i++){
             prev = aux; 
-            aux = head.next;
+            aux = aux.next;
              
         }
         prev.next = aux.next;
@@ -146,7 +146,7 @@ public class LinkedList implements FloatList{
     }
 
     @Override
-    public boolean search(Float value) {
+    public int search(Float value) {
         boolean encontrado = false;
         
         if (isempty())

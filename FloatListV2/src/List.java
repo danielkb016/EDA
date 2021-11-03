@@ -1,6 +1,7 @@
 /**
  *
  * @author mayte
+ * @param <F>
  */
 public interface List<F> {
     

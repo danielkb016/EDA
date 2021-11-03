@@ -27,7 +27,9 @@ public class main {
         System.out.println(f1.isempty() + f1.toString());
         f1.add(1, h);
         System.out.println(f1.isempty() + f1.toString());
+        f1.remove(2);        
         System.out.println(f1.search(i));
+        System.out.println(f1.isempty() + f1.toString());
     }
     
 }

@@ -9,55 +9,96 @@
  * @author mayte
  */
 public class FloatArrayList implements FloatList{
+   
+    private final Float[] vector;
+    private int pos;
+    private final int MAX;
 
+    public FloatArrayList(int MAX) {
+        this.MAX = MAX;
+        vector = new Float[MAX];
+        pos = 0;
+    }
+    
+    
     @Override
     public int size() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return pos;
     }
 
     @Override
     public boolean isempty() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return pos == 0;
     }
 
     @Override
     public void add(Float value) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+      if(pos > MAX){
+        vector[pos] = value;
+        pos++;
+      }
     }
 
     @Override
     public void add(int index, Float value) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+      if(pos < MAX){
+          for(int i = pos; i > index; i--){
+              vector[i] = vector[i-1];
+          }
+          vector[index] = value;
+          pos++;
+      }
     }
 
     @Override
     public Float remove() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(isempty())
+            throw new RuntimeException();
+        pos--;
+        return vector[pos+1];
     }
 
     @Override
     public Float remove(int index) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+         if(isempty())
+            throw new RuntimeException();
+         Float aux = vector[index];
+         for(int i = index; i < pos; i++){
+             vector[i] = vector [i+1];
+         }
+         pos--;
+         return aux;
     }
 
     @Override
     public Float get() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       return vector[pos];
     }
 
     @Override
     public Float get(int index) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+      return vector[index];
     }
 
     @Override
-    public boolean search(Float value) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public int search(Float value) {
+         if (isempty())
+            return 0;
+        int cont = 1;
+        int i = pos-1;
+        while ((i > 0) && (!value.equals(vector[i]))){
+            i--;
+            cont++;
+        }
+        if (!value.equals(vector[i]))
+            return 0;
+        else
+            return cont;
     }
 
     @Override
     public boolean contains(Float value) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+     return search(value) != 0;
     }
     
 }
