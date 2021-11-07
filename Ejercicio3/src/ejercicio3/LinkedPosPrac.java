@@ -12,68 +12,134 @@ import material.Position;
  *
  * @author DANI
  */
-public class LinkedPosPrac implements MyListBetter <E> {
+public class LinkedPosPrac <E> implements MyListBetter <E> {
     
-    private LinkedPosPrac <E> head,tail;
+    private DLinkedNode <E>  head,tail;
+    private int size;
+    
+    private class DLinkedNode <T> implements Position<T>{
+            private DLinkedNode <T> next, prev;
+            private T element;
 
-    public LinkedPosPrac(<any> head, <any> tail) {
-        this.head = head;
-        this.tail = tail;
+        public DLinkedNode(DLinkedNode<T> next, DLinkedNode<T> prev, T element) {
+            this.next = next;
+            this.prev = prev;
+            this.element = element;
+        }
+
+        public DLinkedNode<T> getNext() {
+            return next;
+        }
+
+        public void setNext(DLinkedNode<T> next) {
+            this.next = next;
+        }
+
+        public DLinkedNode<T> getPrev() {
+            return prev;
+        }
+
+        public void setPrev(DLinkedNode<T> prev) {
+            this.prev = prev;
+        }
+        
+        
+        @Override
+        public T getElement() {
+            return element;
+        }
+  
+    
+    }
+   
+    private DLinkedNode<E> checkPosition(Position<E> p){
+        if(p == null || !(p instanceof DLinkedNode))
+            throw new RuntimeException("Invalid position");
+        else
+            return (DLinkedNode<E>) p;
     }
     
-
     @Override
     public int size() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return size;
     }
 
     @Override
     public boolean isempty() {
+        return size == 0;
+    }
+
+    @Override
+    public Position<E> add(E value) {
+        DLinkedNode <E> aux = new DLinkedNode<>(head,null,value);
+        
+        if (head == null){
+            head = aux; 
+             tail = aux;
+        }else {
+            aux.next = head;
+            head.setPrev(aux);
+        }
+        size++;
+        head = aux;
+                
+        return  aux;
+    }
+
+    @Override
+    public Position<E> addAfter(Position<E> pos, E value) {
+       DLinkedNode<E> aux = checkPosition(pos);
+       DLinkedNode <E> node = new DLinkedNode<> (null,aux,value);
+       
+       if(head == null){
+          return null;
+       }else if(aux == tail){
+           tail = node;
+       }
+       else{
+          aux.next = node;
+          node.next = aux.next;
+          aux.next.prev = node;
+       }
+       return node;
+    }
+    
+
+    @Override
+    public Position<E> addBefore(Position<E> pos, E value) {
+       throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+    }
+
+    @Override
+    public E remove(Position<E> pos) {
+        
+    }
+
+    @Override
+    public Position<E> get() {
+        if (isempty())
+            throw new RuntimeException();
+        return this.head;
+    }
+
+    @Override
+    public Position<E> set(Position<E> pos, E value) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public Position<Object> add(Object value) {
+    public Position<E> search(E value) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public Position<Object> addAfter(Position<Object> pos, Object value) {
+    public boolean contains(E value) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public Position<Object> addBefore(Position<Object> pos, Object value) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Object remove(Position<Object> pos) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Position<Object> get() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Position<Object> set(Position<Object> pos, Object value) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Position<Object> search(Object value) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean contains(Object value) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Iterator<Position<Object>> iterator() {
+    public Iterator<Position<E>> iterator() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
