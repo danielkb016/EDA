@@ -13,20 +13,50 @@ import material.Position;
  * @author d.cabezas.2017
  */
 public class AVLTree <E> implements BinarySearchTree<E>{
-    private LinkedBinarySearchTree<E> tree = new LinkedBinarySearchTree<>();
-     public Position<E> desequilibrio(E value) {
+    private LinkedBinarySearchTree<E> tree = new LinkedBinarySearchTree<E>();
+    
+     public Position<E> desequilibrio(Position<E> p) {
+         if(!tree.isRoot(p)){ 
+         }
+         return null;
         
     }
-    private class AVLInfo<T> implements Comparable<AVLInfo<T>>, Position<T>{
+    private class AVLInfo<T> implements Comparable<AVLInfo<T>>, Position<T> {
 
-        @Override
-        public int compareTo(AVLInfo<T> t) {
+        public void setTreePosition(Position<AVLInfo<T>> pos) {
+           throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+
+        public Position<AVLInfo<T>> getTreePosition() {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+
+        public void setHeight(int height) {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+
+        public int getHeight() {
             throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         }
 
         @Override
         public T getElement() {
             throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+
+        @Override
+        public int compareTo(AVLInfo<T> o) {
+          throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+
+        @Override
+        public String toString() {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+
+        @Override
+        public boolean equals(Object obj) {
+           throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         }
     
     }

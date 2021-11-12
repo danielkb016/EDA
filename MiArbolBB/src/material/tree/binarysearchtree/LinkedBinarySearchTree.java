@@ -116,7 +116,7 @@ public class LinkedBinarySearchTree<E> implements BinarySearchTree<E> {
     public int size() {
         return size;
     }
-
+   
     @Override
     public Iterable<? extends Position<E>> rangeIterator(E m, E M) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
