@@ -13,7 +13,10 @@ import material.Position;
  * @author d.cabezas.2017
  */
 public class AVLTree <E> implements BinarySearchTree<E>{
-    private BinarySearchTree<E> tree = new LinkedBinarySearchTree<>();
+    private LinkedBinarySearchTree<E> tree = new LinkedBinarySearchTree<>();
+     public Position<E> desequilibrio(E value) {
+        
+    }
     private class AVLInfo<T> implements Comparable<AVLInfo<T>>, Position<T>{
 
         @Override
@@ -40,7 +43,7 @@ public class AVLTree <E> implements BinarySearchTree<E>{
 
     @Override
     public Position<E> insert(E value) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Position<E>
     }
 
     @Override
