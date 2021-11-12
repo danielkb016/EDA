@@ -100,6 +100,7 @@ public class LinkedBinarySearchTree<E> implements BinarySearchTree<E> {
         if(tree.hasRight(p)){
             return minium(tree.right(p));
         }
+        return null;
     }
     @Override
     public void remove(Position<E> pos) {
