@@ -14,7 +14,7 @@ import material.Position;
 public class LinkedTree<E> implements NAryTree<E>{
     
     private TreeNode<E> root;
-    private int size = 0;
+   
 
     private TreeNode<E> CheckPosition(Position<E> p) {
         if(p != null && p instanceof TreeNode)
@@ -91,7 +91,6 @@ public class LinkedTree<E> implements NAryTree<E>{
         if(!isEmpty())
             throw new RuntimeException("El arbol no es vacio");
         root = new TreeNode(e,null);
-        size++;
         return root;
     }
 
@@ -102,7 +101,6 @@ public class LinkedTree<E> implements NAryTree<E>{
             node.setChildren(new ArrayList<TreeNode<E>>());
         TreeNode<E> hijo = new TreeNode<E>(element,node);
         node.getChildren().add(hijo);
-        size++;
         return hijo;
     }
 
@@ -115,7 +113,6 @@ public class LinkedTree<E> implements NAryTree<E>{
         if(node.getChildren().size() < n)
             throw new RuntimeException();
         node.getChildren().add(n, node);
-        size++;
         return hijo;
     }
 
@@ -143,7 +140,6 @@ public class LinkedTree<E> implements NAryTree<E>{
         if(isRoot(node))
             this.root = null;
         node.getParent().getChildren().remove(node);
-        size--;
     }
 
     @Override
@@ -156,7 +152,7 @@ public class LinkedTree<E> implements NAryTree<E>{
 
     @Override
     public void attach(Position<E> p, NAryTree<E> t) {
-        throw new UnsupportedOperationException("Not supported yeti."); //To change body of generated methods, choose Tools | Templates.
+       throw new RuntimeException();
     }
 
     @Override
