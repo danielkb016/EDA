@@ -34,6 +34,29 @@ public class LCRSTree<E> implements NAryTree<E> {
         
     }
 
+    private class LCRSChildrenTreeIterator implements Iterator<Position<E>> {
+ 
+        private LCRSnode<E> p;
+    
+
+        private LCRSChildrenTreeIterator( LCRSnode<E> node) {
+      
+            p = node.getHijo();
+        }
+
+        @Override
+        public boolean hasNext() {
+           return p!= null;
+        }
+
+        @Override
+        public Position<E> next() {
+            LCRSnode<E> aux =  p;
+            p = p.getHermano();
+            return aux;
+        }
+    }
+
     private class LCRStreeIterator<E>  implements Iterator<Position<E>> {
         private Queue <Position<E>> iterador = new LinkedList<>();
          private LCRSTree<E> tree;
@@ -251,7 +274,8 @@ public class LCRSTree<E> implements NAryTree<E> {
 
     @Override
     public Iterable<? extends Position<E>> children(Position<E> v) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       LCRSnode<E> node = CheckPosition(v);
+       return  (Iterable<? extends Position<E>>) new LCRSChildrenTreeIterator(node);
     }
 
     @Override
