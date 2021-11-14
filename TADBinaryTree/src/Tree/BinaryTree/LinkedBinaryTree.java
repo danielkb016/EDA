@@ -49,7 +49,7 @@ public class LinkedBinaryTree<E> implements BinaryTree<E>{
         public void setRight(BTNode<V> right) {
             this.right = right;
         }
-        public void setElement(BTNode<V> e){
+        public void setElement(V e){
             this.element = (V) e;
         }
         
@@ -60,7 +60,51 @@ public class LinkedBinaryTree<E> implements BinaryTree<E>{
         }
 
 }
+ 
+    /*
+    Altura
+    int height() {
+      int hl = -1;
+      int hr = -1;
+      if (left != null) {
+        hl = left.height();
+      }
+      if (right != null) {
+        hr = right.height();
+      }
+      return 1 + Math.max(hl, hr);
     
+    void preorder() {
+      System.out.println(info);
+      if (left != null) {
+        left.preorder();
+      }
+      if (right != null) {
+        right.preorder();
+      }
+    }
+
+    void inorder() {
+      if (left != null) {
+        left.inorder();
+      }
+      System.out.println(info);
+      if (right != null) {
+        right.inorder();
+      }
+    }
+
+    void postorder() {
+      if (left != null) {
+        left.postorder();
+      }
+      if (right != null) {
+        right.postorder();
+      }
+      System.out.println(info);
+    }
+    }
+*/
     private BTNode<E> root;
     
     @Override

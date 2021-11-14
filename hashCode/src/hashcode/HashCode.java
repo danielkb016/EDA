@@ -26,6 +26,7 @@ public class HashCode {
         mapa.put(alumno1, new Float (7.0));
         mapa.put(alumno2, new Float (8.0));
         mapa.put(alumno3, new Float (9.0));
+        mapa.get(alumno1);
     }
     
 }
