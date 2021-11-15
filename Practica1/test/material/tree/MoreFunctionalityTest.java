@@ -10,8 +10,9 @@ import java.util.List;
 import material.Position;
 import material.tree.narytree.LinkedTree;
 import material.tree.narytree.NAryTree;
+import static org.junit.Assert.assertEquals;
 import org.junit.Test;
-import static org.junit.Assert.*;
+
 
 /**
  *
@@ -52,7 +53,7 @@ public class MoreFunctionalityTest {
         try{
             instance.leftView(null);
         }catch(Exception e){
-            System.out.println(e.getMessage());
+            System.out.println(e.getMessage() );
         }
         List<Character> l = new LinkedList<>();
         NAryTree<Character> t = new LinkedTree<>();
