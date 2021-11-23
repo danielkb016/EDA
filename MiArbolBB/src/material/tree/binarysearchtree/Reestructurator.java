@@ -24,8 +24,59 @@ class Reestructurator {
      *
      * @return the new root of the restructured subtree
      */ 
-    JORGE FUCKER
      public Position restructure(Position posNode, LinkedBinaryTree binTree){
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+         /*
+         Primer paso: Identificar cual de las cuatro situaciones es
+         Segundo paso: Obtener todos los nodos o subarboles necesarios para la reestructuración
+         Tercer paso: Reasignar adecuadamente los nodos
+          */
+         Position parent = binTree.parent(posNode);
+         boolean eshijoIzquierdo = false;
+         if(binTree.hasLeft(parent)){
+             eshijoIzquierdo = binTree.left(parent) == posNode;
+         }
+         Position abuelo = binTree.parent(parent);
+         boolean padreHijoIzquierdo = ((binTree.hasLeft(abuelo)))&&(binTree.left(abuelo)) == parent;
+         boolean esRaizAbuelo = binTree.isRoot(abuelo);
+         boolean esAbueloIzquierdo; 
+         Position padreAbuelo;
+         if(!esRaizAbuelo){
+              padreAbuelo = binTree.parent(abuelo);
+              esAbueloIzquierdo = (binTree.hasLeft(padreAbuelo))&& (binTree.left(abuelo) == parent);
+         }
+         
+        LinkedBinaryTree t2, t3, a = null, b, c = null;
+      
+        if(eshijoIzquierdo && padreHijoIzquierdo){ //izq-izq
+            t2 = binTree.hasRight(posNode)?binTree.subTree(binTree.right(posNode)): null;
+            t3 = binTree.hasRight(parent)?binTree.subTree(binTree.right(parent)): null;
+            a = binTree.subTree(posNode);
+            b = binTree.subTree(parent);
+            c = binTree.subTree(abuelo);
+        }else if(!eshijoIzquierdo && padreHijoIzquierdo){//der-izq
+           t2 = binTree.hasLeft(posNode)?binTree.subTree(binTree.left(posNode)): null;
+           t3 = binTree.hasRight(posNode)?binTree.subTree(binTree.right(posNode)): null;
+           b = binTree.subTree(posNode); 
+           a = binTree.subTree(parent);
+           c = binTree.subTree(abuelo);
+        }else if(eshijoIzquierdo && !padreHijoIzquierdo){//izq-der
+           t2 = binTree.hasLeft(posNode)?binTree.subTree(binTree.left(posNode)): null;
+           t3 = binTree.hasRight(posNode)?binTree.subTree(binTree.right(posNode)): null;
+           b = binTree.subTree(posNode); 
+           c = binTree.subTree(parent);
+           a = binTree.subTree(abuelo);
+        
+        }else{//der-der
+           t2 = binTree.hasLeft(parent)?binTree.subTree(binTree.left(parent)): null;
+           t3 = binTree.hasLeft(posNode)?binTree.subTree(binTree.left(posNode)): null;
+           
+        }
+        if(t2 != null) 
+            a.attachRight(a.root(), t2);
+         c.attachLeft(c.root(), t3);
+         return null;
+              
+         
+         
      }
 }
