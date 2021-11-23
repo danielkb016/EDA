@@ -24,6 +24,7 @@ class Reestructurator {
      *
      * @return the new root of the restructured subtree
      */ 
+    JORGE FUCKER
      public Position restructure(Position posNode, LinkedBinaryTree binTree){
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
      }
