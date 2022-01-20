@@ -64,7 +64,7 @@ public class LinkedBinarySearchTree<E> implements BinarySearchTree<E> {
     }
 
     @Override
-    public Position<E> insert(E value) {
+    public Position<E> insert(E value) {    
         Position<E> p = null ;
         if(isEmpty())
            p = tree.addRoot(value);
