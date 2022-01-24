@@ -96,7 +96,7 @@ public class RecorridosTest {
 
         Edge<String> OP = g.insertEdge(vO, vP, "OP");
 
-        Recorridos<String, String> algorithm = new Recorridos<>();
+        Recorridos_v2<String, String> algorithm = new Recorridos_v2<>();
         List <Edge<String>> path = algorithm.getPath(g, vA, vP);
         
         String stringPath = "";
