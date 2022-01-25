@@ -1,6 +1,14 @@
 package exam.january2016A.lan;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import material.graphs.BreadthSearch;
+import material.graphs.ELGraph;
+import material.graphs.Edge;
+import material.graphs.Vertex;
 
 
 /**
@@ -8,7 +16,9 @@ import java.util.List;
  * @author jvelez
  */
 public class NetworkManager {
-
+    private ELGraph<Host, Integer> grafo = new ELGraph<>();
+    private HashMap<Host,Vertex<Host>> mapa = new HashMap<>();
+    private HashMap<Vertex<Host>,Host> mapa2 = new HashMap<>();
     /**
      * Adds a terminal to the network.
      *
@@ -18,7 +28,14 @@ public class NetworkManager {
      * the terminal.
      */
     public void addTerminal(Terminal terminal, Router router, int bps) {
-        throw new RuntimeException("Implementa este método");
+        if( terminal == null || router == null)
+            throw new RuntimeException();
+        if(!grafo.vertices().contains(mapa.get(router)))
+            throw new RuntimeException();
+        Vertex<Host> vertice = grafo.insertVertex(terminal);
+        mapa.put(router, vertice);
+        mapa2.put(vertice, router);
+        grafo.insertEdge(vertice, mapa.get(router), bps);
     }
 
     /**
@@ -29,14 +46,37 @@ public class NetworkManager {
      * @param bps The bps for each router in routerList
      */
     public void addRouter(Router router, List<Router> routerList, List<Integer> bps) {
-        throw new RuntimeException("Implementa este método");    }    
+       if(  router == null)
+            throw new RuntimeException();
+       
+        Vertex<Host> nodo = grafo.insertVertex(router);
+        mapa.put(router, nodo);
+        mapa2.put(nodo, router);
+        if( routerList != null && !routerList.isEmpty()){
+            if(routerList.size() != bps.size())
+                throw new RuntimeException();
+           Iterator<Integer> it = bps.iterator();
+            for (Router r : routerList) {
+                grafo.insertEdge(nodo, mapa.get(r),it.next());
+                
+            }
+        }
+    }    
 
     /**
      * @param r
      * @return the routers connected to the router r
      */
     List<Router> getRouters(Router r) {
-        throw new RuntimeException("Implementa este método");
+        Collection<? extends Edge<Integer>> listaAristas = grafo.incidentEdges(mapa.get(r));
+        ArrayList<Router> lista = new ArrayList<>();
+        for (Edge<Integer> l : listaAristas) {
+            Vertex<Host> nodo = grafo.opposite(mapa.get(r), l);
+            if(mapa2.get(nodo) instanceof Router){
+                lista.add((Router) nodo);
+            }   
+        }
+        return lista;
     }
 
     /**
@@ -44,7 +84,14 @@ public class NetworkManager {
      * @return the router connected to the terminal t
      */
     Router getRouter(Terminal t) {
-        throw new RuntimeException("Implementa este método");
+        Collection<? extends Edge<Integer>> listaAristas = grafo.incidentEdges(mapa.get(t));
+       
+        for (Edge<Integer> l : listaAristas) {
+            Vertex<Host> opposite = grafo.opposite(mapa.get(t), l);
+            if(mapa2.get(opposite) instanceof Router)
+                return (Router) opposite;
+        }
+        return null;
     }
 
     /**
@@ -54,6 +101,13 @@ public class NetworkManager {
      * @return Return the number of jumps between t1 and t2
      */
     public int findHops(Terminal t1, Terminal t2) {
-        throw new RuntimeException("Implementa este método");
+        
+        BreadthSearch search = new BreadthSearch();
+        Vertex<Host> nodo1 = mapa.get(t1);
+        Vertex<Host> nodo2 = mapa.get(t2);
+        if (nodo1 == null || nodo2 == null)
+            throw new RuntimeException();
+        return search.getPath(grafo, nodo1, nodo2).size();
+        
     }
 }
